@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Conda and virtual environments
+.venv/
+venv/
+
+# Secrets
+.env
+.env.*
+
+# Large datasets and model checkpoints
+data/raw/
+data/processed/
+checkpoints/
+*.pth
+*.pt
+*.ckpt
+
+# Experiment outputs
+wandb/
+
+# Notebook cache
+.ipynb_checkpoints/
+
+# Editor and operating system files
+.vscode/
+.DS_Store
+Thumbs.db
