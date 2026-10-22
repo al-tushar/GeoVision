@@ -1,22 +1,25 @@
+
+"""Inspect the expected GeoVision dataset directory structure."""
+
 from pathlib import Path
 
 
-def test_main_file_exists():
-    assert Path("main.py").is_file()
+def inspect_dataset(root: Path) -> None:
+    """Report whether the dataset directory exists."""
+    print(f"Dataset location: {root.resolve()}")
+    print(f"Dataset directory exists: {root.is_dir()}")
+
+    if not root.is_dir():
+        print("No dataset found yet. This is expected before downloading.")
+        return
+
+    print("\nTop-level entries:")
+
+    for item in sorted(root.iterdir()):
+        entry_type = "Directory" if item.is_dir() else "File"
+        print(f"- {item.name} ({entry_type})")
 
 
-def test_project_folders_exist():
-    expected_folders = [
-        "data",
-        "models",
-        "experiments",
-        "results",
-        "notebooks",
-        "demo",
-        "report",
-        "tests",
-        "docs",
-    ]
-
-    for folder in expected_folders:
-        assert Path(folder).is_dir(), f"Missing folder: {folder}"
+if __name__ == "__main__":
+    dataset_root = Path("data") / "raw"
+    inspect_dataset(dataset_root)
